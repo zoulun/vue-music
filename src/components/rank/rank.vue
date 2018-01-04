@@ -1,12 +1,44 @@
 <template>
   <div class="rank">
-    rank
+    <div class="toplist">
+      <ul>
+        <li class="item">
+          <div class="icon">
+            <img width="100" height="100">
+          </div>
+          <ul class="songlist">
+            <li class="song">
+              <span></span>
+              <span></span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  // import Scroll from 'base/scroll/scroll';
+  // import Loading from 'base/loading/loading';
+  import {getTopList} from 'api/rank';
+  import {ERR_OK} from 'api/config';
+  // import {playlistMixin} from 'common/js/mixin';
+  // import {mapMutations} from 'vuex';
   export default {
-
+    created() {
+      this._getTopList();
+    },
+    methods: {
+      _getTopList() {
+        getTopList().then((res) => {
+          if (res.code === ERR_OK) {
+            console.log(res.data.topList);
+          }
+        });
+      }
+    }
   };
 </script>
 
