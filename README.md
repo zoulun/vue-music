@@ -1,3 +1,4 @@
 # vue-music
-npm install</br>
+npm install
+
 npm run dev
